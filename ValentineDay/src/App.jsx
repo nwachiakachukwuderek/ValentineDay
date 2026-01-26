@@ -1,156 +1,107 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 
-// ============================================
-// CONFIGURATION LAYER (User-Editable Section)
-// ============================================
-// Edit these values to customize your Valentine's Day experience
+// ==========================================
+// CONFIGURATION: EDIT YOUR DATA HERE
+// ==========================================
 const CONFIG = {
-  // Main title text displayed in the intro screen
-  TITLE_TEXT: '❤️ Happy Valentine\'s Day ❤️',
-
-  // Array of paragraphs for the crawling text animation
-  // Each element will be displayed with line breaks between them
-  CRAWL_PARAGRAPHS: [
-    'In a galaxy far, far away...',
-    'There lived a heart full of love and wonder.',
-    'A love that transcends time and space.',
-    'Happy Valentine\'s Day to my special someone!',
-    'You are my favorite adventure.',
-    'Forever and always... 💕',
+  title: "A GALAXY FULL OF STARS BUT ONLY ONE OF YOU",
+  subtitle: "Episode XIV: The Valentine's Request",
+  paragraphs: [
+    "It is a period of great affection.",
+    "The heart of the sender has been captured by a presence so bright, it outshines a twin sun system.",
+    "Every day spent together feels like a jump through hyperspace, full of excitement and wonder.",
+    "There is no need for a Jedi mind trick to say what is true: you are the most incredible person in the galaxy.",
+    "The force is strong with this connection, and it is time for the final question..."
   ],
-
-  // Background image URL - Change this to your image
-  // Tip: Use a full HTTPS URL or place an image in /public folder
-  // Example: '/valentine-bg.jpg' or 'https://your-image-url.com/image.jpg'
-  BACKGROUND_IMAGE_URL: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1200&h=800&fit=crop',
-
-  // Audio URL - Background music for the experience
-  // Tip: Place an audio file in /public folder or use an HTTPS URL
-  // Example: '/love-song.mp3' or 'https://your-audio-url.com/music.mp3'
-  AUDIO_URL: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-
-  // WhatsApp URL - User will be redirected here after the animation
-  // Replace PHONE_NUMBER with the actual phone number (include country code, no + symbol)
-  // Format: https://wa.me/PHONE_NUMBER?text=MESSAGE
-  WHATSAPP_URL: 'https://wa.me/1234567890?text=Happy%20Valentines%20Day!',
-
-  // Speed of the crawling text animation (in seconds)
-  // Lower values = faster animation
-  CRAWL_SPEED: 20,
+  backgroundImage: "https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?auto=format&fit=crop&q=80&w=2070",
+  audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  whatsappUrl: "https://wa.me/09029311960?text=So what's your answer!",
+  baseSpeed: 40, 
 };
 
-function App() {
-  // State management for the three views
-  const [appState, setAppState] = useState('LOCKED'); // LOCKED | CRAWLING | SUCCESS
+const ValentineApp = () => {
+  const [view, setView] = useState('LOCKED'); 
+  const [isFast, setIsFast] = useState(false);
   const audioRef = useRef(null);
-  const textContainerRef = useRef(null);
 
-  // Initialize audio and transition to CRAWLING state
-  const handleStartExperience = () => {
-    setAppState('CRAWLING');
-
-    // Play audio if available
-    if (audioRef.current) {
-      audioRef.current.play().catch((error) => {
-        console.log('Audio playback failed:', error);
-      });
-    }
-  };
-
-  // Handle animation end - transition to SUCCESS state
-  const handleAnimationEnd = () => {
-    setAppState('SUCCESS');
-  };
-
-  // Stop audio when leaving the page
+  // Apply background to body to eliminate white space
   useEffect(() => {
-    const audio = audioRef.current;
+    document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${CONFIG.backgroundImage})`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center';
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.margin = "0";
+    
     return () => {
-      if (audio) {
-        audio.pause();
-      }
+      document.body.style.backgroundImage = '';
     };
   }, []);
 
+  const startExperience = () => {
+    if (audioRef.current) {
+      audioRef.current.play().catch(e => console.log("Audio play blocked", e));
+    }
+    setView('CRAWLING');
+  };
+
+  const currentSpeed = isFast ? CONFIG.baseSpeed / 2 : CONFIG.baseSpeed;
+
   return (
-    <div className="app-container" style={{ backgroundImage: `url(${CONFIG.BACKGROUND_IMAGE_URL})` }}>
-      {/* Hidden audio element - initialized on user interaction */}
-      <audio ref={audioRef} src={CONFIG.AUDIO_URL} loop />
+    <div 
+      className="container" 
+      onClick={() => view === 'CRAWLING' && setIsFast(!isFast)}
+    >
+      <audio ref={audioRef} src={CONFIG.audioUrl} loop />
 
-      {/* VIEW 1: LOCKED STATE - Intro Screen with "Tap to Open" Button */}
-      {appState === 'LOCKED' && (
-        <div className="overlay-screen">
-          <div className="intro-content">
-            <h1 className="intro-title">{CONFIG.TITLE_TEXT}</h1>
-            <button
-              className="tap-button"
-              onClick={handleStartExperience}
-              aria-label="Tap to open the Valentine's Day experience"
-            >
-              ✨ Tap to Open ✨
-            </button>
-            <p className="intro-subtitle">Prepare for something special...</p>
-          </div>
+      {/* 1. INTRO VIEW */}
+      {view === 'LOCKED' && (
+        <div className="overlay">
+          <button className="startButton" onClick={startExperience}>
+            <span style={{ fontSize: '2rem' }}>❤️</span>
+            <p>Hey, Tap me Sha </p>
+          </button>
         </div>
       )}
 
-      {/* VIEW 2: CRAWLING STATE - 3D Star Wars-style Text Animation */}
-      {appState === 'CRAWLING' && (
-        <div className="crawl-container">
-          {/* Perspective container for 3D effect */}
-          <div className="perspective-wrapper">
-            <div
-              className="crawl-text"
-              ref={textContainerRef}
-              onAnimationEnd={handleAnimationEnd}
-              style={{ animationDuration: `${CONFIG.CRAWL_SPEED}s` }}
-            >
-              {/* Render crawl paragraphs */}
-              {CONFIG.CRAWL_PARAGRAPHS.map((paragraph, index) => (
-                <div key={index} className="crawl-paragraph">
-                  {paragraph}
-                </div>
-              ))}
+      {/* 2. THE STAR WARS CRAWL */}
+      {view === 'CRAWLING' && (
+        <div className="crawlContainer">
+          <div className="speed-indicator">
+            {isFast ? "Speed: 2x (Tap to slow)" : "Tap screen to speed up x2"}
+          </div>
+
+          <section 
+            className="crawlContent" 
+            onAnimationEnd={() => setView('SUCCESS')}
+            style={{ animationDuration: `${currentSpeed}s` }} 
+          >
+            <div className="titleSection">
+              <p className="subtitle">{CONFIG.subtitle}</p>
+              <h1 className="main-title">{CONFIG.title}</h1>
             </div>
-          </div>
+            
+            {/* FIX: Ensure CONFIG.paragraphs is called and the variable 'para' is used */}
+            {CONFIG.paragraphs.map((para, index) => (
+              <p key={index} className="crawlText">
+                {para}
+              </p>
+            ))}
+          </section>
         </div>
       )}
 
-      {/* VIEW 3: SUCCESS STATE - Call-to-Action Screen with WhatsApp Link */}
-      {appState === 'SUCCESS' && (
-        <div className="overlay-screen">
-          <div className="success-content">
-            <h1 className="success-title">💖 The End 💖</h1>
-            <p className="success-message">
-              Thank you for experiencing this special message.
-            </p>
-            <a
-              href={CONFIG.WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp-button"
-              aria-label="Send a message on WhatsApp"
-            >
-              💬 Send on WhatsApp
-            </a>
-            <button
-              className="replay-button"
-              onClick={() => {
-                setAppState('LOCKED');
-                if (audioRef.current) {
-                  audioRef.current.pause();
-                  audioRef.current.currentTime = 0;
-                }
-              }}
-            >
-              🔄 Watch Again
-            </button>
-          </div>
+      {/* 3. FINAL SUCCESS VIEW */}
+      {view === 'SUCCESS' && (
+        <div className="successView">
+          <h2>Will you be my Valentine?</h2>
+          <a href={CONFIG.whatsappUrl} target="_blank" rel="noreferrer" className="whatsappButton">
+            Tap Here Next
+          </a>
         </div>
       )}
     </div>
   );
-}
+};
 
-export default App;
+export default ValentineApp;
