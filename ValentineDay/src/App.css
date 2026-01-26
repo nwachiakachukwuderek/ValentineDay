@@ -1,0 +1,442 @@
+/* ============================================
+   VALENTINE'S DAY EXPERIENCE - RESPONSIVE STYLES
+   Mobile-First Approach with Full Responsiveness
+   ============================================ */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  overflow: hidden;
+}
+
+/* ============================================
+   MAIN APP CONTAINER
+   ============================================ */
+.app-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Add a dark overlay on top of the background for better text readability */
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   OVERLAY SCREENS (LOCKED and SUCCESS states)
+   ============================================ */
+.overlay-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   INTRO SCREEN (LOCKED STATE)
+   ============================================ */
+.intro-content {
+  text-align: center;
+  padding: 2rem;
+  max-width: 90vw;
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intro-title {
+  color: #ff1493;
+  font-size: clamp(1.5rem, 8vw, 3rem);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 10px rgba(255, 20, 147, 0.6);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.intro-subtitle {
+  color: #ffffff;
+  font-size: clamp(0.9rem, 4vw, 1.3rem);
+  margin-top: 2rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+/* ============================================
+   TAP BUTTON (Overlay Start Screen)
+   ============================================ */
+.tap-button {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  border-radius: 50px;
+  cursor: pointer;
+  min-height: 48px;
+  min-width: 48px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.tap-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 20, 147, 0.9);
+}
+
+.tap-button:active {
+  transform: scale(0.95);
+}
+
+/* Mobile optimization for tap target */
+@media (max-width: 768px) {
+  .tap-button {
+    padding: 1.2rem 2.5rem;
+  }
+}
+
+/* ============================================
+   SUCCESS SCREEN (SUCCESS STATE)
+   ============================================ */
+.success-content {
+  text-align: center;
+  padding: 2rem;
+  max-width: 90vw;
+  animation: slideUp 0.8s ease-out;
+}
+
+.success-title {
+  color: #ff1493;
+  font-size: clamp(1.5rem, 8vw, 3rem);
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px rgba(255, 20, 147, 0.6);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.success-message {
+  color: #ffffff;
+  font-size: clamp(0.9rem, 4vw, 1.2rem);
+  margin-bottom: 2rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+}
+
+/* ============================================
+   CTA BUTTONS (WhatsApp and Replay)
+   ============================================ */
+.whatsapp-button,
+.replay-button {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  min-height: 48px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsapp-button {
+  background: linear-gradient(135deg, #25d366, #20ba5a);
+  color: white;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(37, 211, 102, 0.9);
+}
+
+.replay-button {
+  background: linear-gradient(135deg, #9370db, #8a60d9);
+  color: white;
+  box-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.replay-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(147, 112, 219, 0.9);
+}
+
+.whatsapp-button:active,
+.replay-button:active {
+  transform: scale(0.95);
+}
+
+/* Mobile optimization for tap targets */
+@media (max-width: 768px) {
+  .whatsapp-button,
+  .replay-button {
+    padding: 1.2rem 2.5rem;
+    min-width: 200px;
+  }
+}
+
+/* ============================================
+   CRAWLING TEXT ANIMATION (3D Star Wars Style)
+   ============================================ */
+
+/* Perspective container - creates the 3D effect */
+.perspective-wrapper {
+  perspective: clamp(250px, 350px, 500px);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+}
+
+/* Crawl text container - the actual animated text */
+.crawl-text {
+  width: 100%;
+  max-width: 90vw;
+  transform: rotateX(25deg);
+  transform-style: preserve-3d;
+  text-align: center;
+  opacity: 1;
+  animation: crawl linear forwards;
+  color: #ffeb3b;
+  text-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Crawl animation - moves text from bottom to top and fades out */
+@keyframes crawl {
+  0% {
+    opacity: 1;
+    transform: rotateX(25deg) translateY(100vh);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotateX(25deg) translateY(-100vh);
+  }
+}
+
+/* Individual crawl paragraphs */
+.crawl-paragraph {
+  font-size: clamp(1rem, 5vw, 2.5rem);
+  margin: 1.5rem 0;
+  line-height: 1.8;
+}
+
+/* ============================================
+   MEDIA QUERIES FOR MOBILE RESPONSIVENESS
+   ============================================ */
+
+/* Small phones (< 480px) - Portrait mode */
+@media (max-width: 480px) {
+  .perspective-wrapper {
+    perspective: 250px;
+  }
+
+  .crawl-text {
+    transform: rotateX(20deg);
+    max-width: 95vw;
+  }
+
+  .crawl-paragraph {
+    margin: 1rem 0;
+  }
+
+  .intro-content,
+  .success-content {
+    padding: 1.5rem;
+  }
+
+  .intro-title,
+  .success-title {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Tablets (480px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .perspective-wrapper {
+    perspective: 300px;
+  }
+
+  .crawl-text {
+    transform: rotateX(22deg);
+  }
+}
+
+/* Larger devices (> 768px) - Desktop and large tablets */
+@media (min-width: 769px) {
+  .perspective-wrapper {
+    perspective: 350px;
+  }
+
+  .crawl-text {
+    transform: rotateX(25deg);
+  }
+
+  .intro-content,
+  .success-content {
+    padding: 3rem;
+  }
+}
+
+/* Ultra-wide screens (> 1440px) */
+@media (min-width: 1440px) {
+  .crawl-paragraph {
+    margin: 2rem 0;
+  }
+
+  .intro-title,
+  .success-title {
+    margin-bottom: 4rem;
+  }
+}
+
+/* ============================================
+   LANDSCAPE MODE ADJUSTMENTS
+   ============================================ */
+@media (orientation: landscape) and (max-height: 500px) {
+  .intro-title,
+  .success-title {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    margin-bottom: 1rem;
+  }
+
+  .intro-subtitle,
+  .success-message {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    margin-bottom: 1rem;
+  }
+
+  .tap-button,
+  .whatsapp-button,
+  .replay-button {
+    padding: 0.7rem 1.5rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY & PERFORMANCE
+   ============================================ */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  .intro-title,
+  .success-title {
+    text-shadow: 0 0 20px rgba(0, 0, 0, 1);
+  }
+
+  .tap-button,
+  .whatsapp-button,
+  .replay-button {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  .intro-subtitle,
+  .success-message {
+    color: #e0e0e0;
+  }
+}
+
+/* ============================================
+   FOCUS STATES FOR KEYBOARD NAVIGATION
+   ============================================ */
+.tap-button:focus,
+.whatsapp-button:focus,
+.replay-button:focus {
+  outline: 3px solid #ffeb3b;
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users */
+.tap-button:focus:not(:focus-visible),
+.whatsapp-button:focus:not(:focus-visible),
+.replay-button:focus:not(:focus-visible) {
+  outline: none;
+}
