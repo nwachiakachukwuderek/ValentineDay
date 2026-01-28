@@ -1,22 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
+import audio from './assets/american-love.mp3'
 
 // ==========================================
 // CONFIGURATION: EDIT YOUR DATA HERE
 // ==========================================
+
 const CONFIG = {
   title: "A GALAXY FULL OF STARS BUT ONLY ONE OF YOU",
-  subtitle: "Episode XIV: The Valentine's Request",
+  subtitle: "Episode XIV: The Valentine Request",
   paragraphs: [
-    "It is a period of great affection.",
-    "The heart of the sender has been captured by a presence so bright, it outshines a twin sun system.",
-    "Every day spent together feels like a jump through hyperspace, full of excitement and wonder.",
-    "There is no need for a Jedi mind trick to say what is true: you are the most incredible person in the galaxy.",
-    "The force is strong with this connection, and it is time for the final question..."
+    "I couldn't find an appropriate way to begin, so i'll just start",
+    "Since i met you as funny and messed up as it was, every interaction has been a wonderful experience.",
+    "You are one of the most surprising and best thing that has happened to me since beginning school.",
+    "You're everything i or any guy could ever hope for Beautiful, Smart, Curious, Inquisitive, Audaciuos,",
+    "Ambitiuos, Open-Minded and yet Strong sense of self, Kind, Passionate, Funny, Opinionated",
+    "I honestly have run out of adjectives to describe how i see you. Falling for you was,",
+    "is, and will probably be the most confusing and unpredictable thing that has ever happened to me",
+    "And yet it's obvious why",
+    "(her name) saying Yes will make me the second happiest man in the world",
+    "(cos saying yes to something else will make me the happiest)",
+    "So after going roundabout the question is"
   ],
   backgroundImage: "https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?auto=format&fit=crop&q=80&w=2070",
-  audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-  whatsappUrl: "https://wa.me/09029311960?text=So what's your answer!",
+  audioUrl: audio,
+  whatsappUrl: "https://wa.me/(Your number)?text=So what's your answer!",
   baseSpeed: 40, 
 };
 
