@@ -6,7 +6,7 @@ it was made to be as simple for but techies and non-techies to use.
 
 🚀🚀Live Demo: [Check it out ](https://akachukwuval.netlify.app)
 
-##🛠Tech Stack
+🛠##Tech Stack
 * HTML and CSS: For the structure of the website and styling with little animation respectively 
 * JavaScript: For the logic 
 * React.js: Component-Based UI architecture 
