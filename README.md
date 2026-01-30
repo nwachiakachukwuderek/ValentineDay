@@ -34,7 +34,7 @@ To get this project running on your local machine, follow these steps:
 ```bash
 git clone [https://github.com/nwachiakachukwuderek/ValentineDay.git](https://github.com/nwachiakachukwuderek/ValentineDay.git)
 
-2. **​Navigate into the folder:**
+## 2. **​Navigate into the folder:**
  ```bash 
 
 cd ValentineDay
