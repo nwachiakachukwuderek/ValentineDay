@@ -1,4 +1,4 @@
-7th# VALENTINE REQUEST REACT APP❤️❤️
+# VALENTINE REQUEST REACT APP❤️❤️
 ##### This an application i created to ask my crush to be my val 
 ## About the Project 
 I struggle to open up but I'm quite romantic so I thought that code is a good way to express myself without being shy and to get all my word across. If you want a cute out of the ordinary way of telling someone how you feel(friend, crush, girlfriend, mom e.t.c) this VALENTINE, then look no further. 
@@ -22,13 +22,17 @@ it was made with simplicity in mind for but techies and non-techies to use.
 2. Import the new file in **App.jsx**.
 3. Update the **audioUrl** variable to point to your new file.
 
-## 🚀 Installation & Setup
+## Installation & Setup
 
-To run this project locally on your machine, follow these steps:
+To get this project running on your local machine, follow these steps:
 
-### 1. Clone the Repository
+### Prerequisites
+* **Node.js** installed on your computer.
+
+### Setup Steps
+1. **Clone the repository:**
 ```bash
 git clone [https://github.com/nwachiakachukwuderek/ValentineDay.git](https://github.com/nwachiakachukwuderek/ValentineDay.git)
-cd ValentineDay
+
 
 
