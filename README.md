@@ -13,9 +13,14 @@ it was made with simplicity in mind for but techies and non-techies to use.
 * Netlify: Hosting and Automated Deployment 
 
 ## Usage
-* All the variables or text are stored in "config" at the top of App.jsx just remove what you don't want and add your preferred text.
+** ALL THE VARIABLES THAT NEED TO BE ADJUSTED ARE AT THE TOP OF App.Jsx**
+* Edit Text: All variables and text are stored in a **config** object at the top of **App.jsx** simply remove the default text and add your own personalized message.
 
-* The Base Speed variable: the higher the number the faster is going across the screen and the lower the number the slower is goes.
+* Adjust Speed: Locate the **Base Speed** variable. A higher number makes the text move faster across the screen, while a lower number makes it slower.
 
-* To change the audio paste your preferred audio in the assets folder in the src folder then move to App.jsx and import your new audio, don't forget to update the audioUrl variable
+* Change Music: 1. Paste your audio file into the **src/assets folder**.
+2. Import the new file in **App.jsx**.
+3. Update the **audioUrl** variable to point to your new file.
+
+
 
